@@ -1,25 +1,42 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    publicPath: "/",
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  'postcss-import',
+                  'tailwindcss',
+                  'autoprefixer',
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
     ],
   },
-  devServer: {
-    static: './public',
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-  mode: 'development',
 };
