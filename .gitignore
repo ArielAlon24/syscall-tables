@@ -5,7 +5,6 @@ venv/
 # Frontend
 frontend/node_modules
 frontend/dist
-
-# Generated Files
-tables.json
-syscalls.json
+frontend/public/tables.json
+frontend/public/last-update.txt
+frontend/package-lock.json
