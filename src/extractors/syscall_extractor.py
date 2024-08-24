@@ -21,7 +21,7 @@ class SyscallExtractor:
         syscalls = []
 
         with file.open() as stream:
-            for index, line in enumerate(stream):
+            for index, line in enumerate(stream.read().splitlines()):
                 for definition in Definition:
                     if not line.startswith(definition.value):
                         continue
@@ -32,7 +32,7 @@ class SyscallExtractor:
                             definition=definition,
                             line=line,
                             stream=stream,
-                            start=index,
+                            start=index + 1,
                         )
                     )
 

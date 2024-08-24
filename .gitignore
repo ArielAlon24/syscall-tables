@@ -1,12 +1,11 @@
-venv
-syscalls.json
-
 # Python
 venv/
 */**/__pycache__
 
 # Frontend
-*/**/node_modules
+frontend/node_modules
+frontend/dist
 
 # Generated Files
 tables.json
+syscalls.json

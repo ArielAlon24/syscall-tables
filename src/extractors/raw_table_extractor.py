@@ -14,7 +14,9 @@ class RawTableExtractor:
         for file in self.directory.glob("arch/**/syscall*.tbl"):
             table = self._parse_table_file(file)
             tables.append(table)
-            print(f'- Extracted table {str(self.index).zfill(4)}: "{table.file}"')
+            print(
+                f'- Extracted table {str(self.index).zfill(4)}: "{table.file}" with {len(table.entries)} entires'
+            )
             self.index += 1
 
         return tables
@@ -41,7 +43,7 @@ class RawTableExtractor:
                     no_return = True
 
                 entry = RawEntry(
-                    number= int(parts[0]),
+                    number=int(parts[0]),
                     abi=parts[1],
                     name=parts[2],
                     entry_point=entry_point,

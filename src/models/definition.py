@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Definition(Enum):
     REGULAR_32 = "SYSCALL32_DEFINE"
     REGULAR = "SYSCALL_DEFINE"

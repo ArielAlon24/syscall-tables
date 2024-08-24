@@ -1,4 +1,3 @@
-from pathlib import Path
 from typing import Dict, List
 
 from models.raw_table import RawTable
@@ -19,19 +18,37 @@ class TableBuilder:
 
         for raw_table in self.raw_tables:
             entries = []
-            name = raw_table.create_name()
+            architecture = raw_table.architecture
+            extension = raw_table.extension
 
             for raw_entry in raw_table.entries:
 
                 syscalls = self.syscall_mapping.get(raw_entry.name, None)
+                syscalls = syscalls if syscalls else list()
+                actual = []
+
+                for syscall in syscalls:
+                    if syscall.file.match("arch") and not raw_table.file.match(
+                        architecture
+                    ):
+                        continue
+
+                    actual.append(syscall)
 
                 entries.append(
                     Entry(
                         number=raw_entry.number,
-                        syscalls=syscalls,
+                        syscalls=actual,
                     )
                 )
 
-            tables.append(Table(architecture=name, entries=entries))
+            tables.append(
+                Table(
+                    architecture=architecture + extension,
+                    entries=sorted(entries, key=lambda e: e.number),
+                )
+            )
+
+            print(f"- Built table entry for {tables[-1].architecture}")
 
         return tables
