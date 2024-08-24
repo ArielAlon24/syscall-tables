@@ -9,7 +9,7 @@ export default function App() {
     <Router basename="/">
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/table/:architecture" element={<TableScreen />} />
+        <Route path="/:architecture" element={<TableScreen />} />
       </Routes>
     </Router>
   );
