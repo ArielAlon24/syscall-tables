@@ -11,8 +11,8 @@ export default function SyscallTable(props: SyscallTableProps) {
   const { table } = props;
 
   return (
-    <div className="overflow-x-auto font-mono rounded-lg text-xs">
-      <table className="min-w-full bg-zinc-900 text-zinc-50 rounded-xl shadow-lg">
+    <div className="overflow-x-auto  font-mono rounded-lg text-xs">
+      <table className="min-w-full bg-zinc-900 font-mono text-zinc-50 rounded-xl shadow-lg">
         <thead className="bg-zinc-900">
           <tr>
             <Th label="#" center />
