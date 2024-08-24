@@ -28,12 +28,10 @@ class RawTable(BaseModel):
 
     @property
     def extension(self) -> str:
-        print(self.file.name)
         basename = self.file.name
         basename = basename.removesuffix(".tbl")
         parts = basename.split("_")
 
-        print(parts)
         if len(parts) == 1:
             return ""
 

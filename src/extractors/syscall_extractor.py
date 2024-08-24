@@ -20,8 +20,9 @@ class SyscallExtractor:
     def _find_syscalls_in_file(self, file: Path) -> List[Syscall]:
         syscalls = []
 
-        with file.open() as stream:
-            for index, line in enumerate(stream.read().splitlines()):
+        with file.open() as fp:
+            data = fp.read().splitlines()
+            for index, line in enumerate(data):
                 for definition in Definition:
                     if not line.startswith(definition.value):
                         continue
@@ -31,7 +32,7 @@ class SyscallExtractor:
                             file=file,
                             definition=definition,
                             line=line,
-                            stream=stream,
+                            stream=iter(data[index + 1 :]),
                             start=index + 1,
                         )
                     )
@@ -47,11 +48,9 @@ class SyscallExtractor:
         start: int,
     ) -> Syscall:
         declaration = line.strip()
-        if not declaration.endswith(")"):
-            for index, line in enumerate(stream):
-                declaration += line.strip()
-                if line.endswith(")\n"):
-                    break
+
+        while not declaration.endswith(")"):
+            declaration += next(stream).strip()
 
         definition_length = len(definition.value)
         n = int(declaration[definition_length : definition_length + 1])
