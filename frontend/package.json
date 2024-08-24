@@ -1,6 +1,6 @@
 {
-  "name": "frontend",
-  "homepage": "https://ArielAlon24.github.io/systable",
+  "name": "syscall-tables",
+  "homepage": "https://ArielAlon24.github.io/syscall-tables",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
