@@ -23,7 +23,7 @@ echo $DATETIME > $LAST_UPDATE
 cd $PROJECT_DIR/frontend
 npm run build
 
-# # Deploy to GitHub
+# Deploy to GitHub
 ./node_modules/.bin/gh-pages -d dist -m "[UPDATE] $DATETIME"
 
 

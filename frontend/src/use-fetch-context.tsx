@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useState,
   ReactNode,
-  FC,
 } from "react";
 
 const FetchContext = createContext<
