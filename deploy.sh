@@ -14,7 +14,7 @@ git pull
 # Extract Syscalls
 cd $PROJECT_DIR/backend
 source venv/bin/activate
-./backend/src/main.py $LINUX_DIR $OUTPUT
+./src/main.py $LINUX_DIR $TABLES_OUTPUT
 
 # Update datetime.txt
 echo $DATETIME > $LAST_UPDATE
