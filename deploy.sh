@@ -1,9 +1,9 @@
 #!/bin/bash
 
 PROJECT_DIR=$(pwd)
-LINUX_DIR=~/Dev/linux/
-TABLES_OUTPUT=~/Dev/syscall-table/frontend/public/tables.json
-LAST_UPDATE=~/Dev/syscall-table/frontend/public/last-update.txt
+LINUX_DIR=$PROJECT_DIR/linux
+TABLES_OUTPUT=$PROJECT_DIR/frontend/public/tables.json
+LAST_UPDATE=$PROJECT_DIR/frontend/public/last-update.txt
 DATETIME=$(date -Iseconds)
 
 # Pull Linux's new commits
@@ -24,6 +24,6 @@ cd $PROJECT_DIR/frontend
 npm run build
 
 # # Deploy to GitHub
-# ./node_modules/.bin/gh-pages -d dist -m "[UPDATE] $DATETIME"
+./node_modules/.bin/gh-pages -d dist -m "[UPDATE] $DATETIME"
 
 
