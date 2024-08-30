@@ -9,12 +9,20 @@ DATETIME=$(date -Iseconds)
 # Pull Linux's new commits
 cd $LINUX_DIR
 git fetch
-git pull
+git fetch
+output=$(git pull)
+if [[ $output == *"Already up to date."* ]]; then
+    echo "No updates found. Exiting."
+    exit 0
+else
+    echo "Updates were found."
+fi
 
 # Extract Syscalls
 cd $PROJECT_DIR/backend
 source venv/bin/activate
-./src/main.py $LINUX_DIR $TABLES_OUTPUT
+python src/main.py $LINUX_DIR $TABLES_OUTPUT
+deactivate
 
 # Update datetime.txt
 echo $DATETIME > $LAST_UPDATE
